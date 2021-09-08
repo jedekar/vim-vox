@@ -6,7 +6,7 @@ if exists("b:current syntax")
 	finish
 endif
 
-syn keyword voxKeywords return enum function alias struct if else while
+syn keyword voxKeywords return enum function alias struct if else while import
 syn keyword voxTypes void bool noreturn i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 typeof(null) $alias $type $value
 syn match voxComment "//.*$"
 
@@ -18,7 +18,7 @@ syn region voxString start='"' end='"'
 syn match voxChar '\'.\''
 syn match voxChar '\'\\n\''
 
-syn keyword voxConstants null true false
+syn keyword voxConstants null true false syscall
 
 syn match voxMeta "#version"
 syn match voxMeta "#foreach"
@@ -45,6 +45,8 @@ syn match voxMetaFunc "$getIdentifier"
 syn match voxMetaFunc "$getMembers"
 syn match voxMetaFunc "$getStructMembersVariables"
 syn match voxMetaFunc "$getStructMembersMethods"
+
+syn match voxAttrib "@extern"
 
 let b:current_syntax = "vox"
 
