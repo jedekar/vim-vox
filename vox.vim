@@ -10,17 +10,8 @@ syn keyword voxKeywords return enum function alias struct if else while
 syn keyword voxTypes void bool noreturn i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 typeof(null) $alias $type $value
 syn match voxComment "//.*$"
 
-" Regular int like number with - + or nothing in front
-syn match voxNumber '\d\+'
-syn match voxNumber '[-+]\d\+'
-
-" Hexadecimal int number with - + or nothing in front
-syn match voxNumber '0x[0-9a-fA-F]\+'
-syn match voxNumber '[-+]0x[0-9a-fA-F]\+'
-
-" Floating point number with decimal no E or e (+,-)
-syn match voxNumber '\d\+\.\d*'
-syn match voxNumber '[-+]\d\+\.\d*'
+syn match voxDecimalInt "\<-\=\(0\|[1-9]_\?\(\d\|\d\+_\?\d\+\)*\)\%([Ee][-+]\=\d\+\)\=\>"
+syn match voxHexadecimalInt "\<-\=0[xX]_\?\(\x\+_\?\)\+\>"
 
 syn region voxString start='"' end='"'
 
@@ -60,9 +51,11 @@ let b:current_syntax = "vox"
 hi def link voxKeywords Statement
 hi def link voxTypes Type
 hi def link voxComment Comment
-hi def link voxNumber Constant
+hi def link voxDecimalInt Constant
+hi def link voxHexadecimalInt Constant
 hi def link voxString Constant
 hi def link voxChar Constant
 hi def link voxConstants Constant
 hi def link voxMeta Function
 hi def link voxMetaFunc Function
+hi def link voxAttrib Function
